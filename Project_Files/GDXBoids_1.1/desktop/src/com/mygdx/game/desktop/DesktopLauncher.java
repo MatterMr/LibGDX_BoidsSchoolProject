@@ -8,8 +8,8 @@ public class DesktopLauncher {
 	public static void main (String[] arg) {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
 		config.title = "Boids";
-		config.width = boid_enviorment.canvasWidth;
-		config.height = boid_enviorment.canvasHeight;
+		config.width = boid_enviorment.CANVAS_WIDTH;
+		config.height = boid_enviorment.CANVAS_HEIGHT;
 		config.foregroundFPS = 60;
 		new LwjglApplication(new boid_enviorment(), config);
 	}
