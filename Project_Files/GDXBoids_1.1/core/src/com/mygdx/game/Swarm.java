@@ -65,7 +65,7 @@ public class Swarm {
 
         textBatch.begin();
         font.setColor(Color.BLACK);
-        font.draw(textBatch, "" +boidCollection.get(0).heading, 10,boid_enviorment.canvasHeight-10 );
+        font.draw(textBatch, "" +boidCollection.get(0).heading, 10,boid_enviorment.CANVAS_HEIGHT-10 );
         textBatch.end();
         //Boid Drawing Loop
         boidRenderer.begin(ShapeType.Filled);

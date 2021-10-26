@@ -10,8 +10,9 @@ import com.badlogic.gdx.utils.ScreenUtils;
 
 public class boid_enviorment extends ApplicationAdapter {
 	
-	public static final int canvasWidth = 1000;
-	public static final int canvasHeight = 700;
+	public static final int CANVAS_WIDTH   = 1000;
+	public static final int CANVAS_HEIGHT  = 700;
+	private static final Color CLEAR_COLOR = new Color(75f/255f, 165f/255f, 157f/255f, 0.5f);
 
 	Swarm boidSwarm;
 
@@ -23,20 +24,20 @@ public class boid_enviorment extends ApplicationAdapter {
 
 	@Override
 	public void render () {
-		ScreenUtils.clear(75f/255f, 165f/255f, 157f/255f, 0.5f);
+		ScreenUtils.clear(CLEAR_COLOR);
 		
 
 		if(Gdx.input.isKeyPressed(Keys.W)){
-			boidSwarm.addBoid(Gdx.input.getX(),boid_enviorment.canvasHeight-Gdx.input.getY(), 90, Color.WHITE);
+			boidSwarm.addBoid(Gdx.input.getX(),CANVAS_HEIGHT - Gdx.input.getY(), 90, Color.WHITE);
         }
 		if(Gdx.input.isKeyPressed(Keys.S)){
-			boidSwarm.addBoid(Gdx.input.getX(),boid_enviorment.canvasHeight-Gdx.input.getY(), -90, Color.BLUE);
+			boidSwarm.addBoid(Gdx.input.getX(),CANVAS_HEIGHT - Gdx.input.getY(), -90, Color.BLUE);
         }
 		if(Gdx.input.isKeyPressed(Keys.D)){
-			boidSwarm.addBoid(Gdx.input.getX(),boid_enviorment.canvasHeight-Gdx.input.getY(), 0, Color.YELLOW);
+			boidSwarm.addBoid(Gdx.input.getX(),CANVAS_HEIGHT - Gdx.input.getY(), 0, Color.YELLOW);
         }
 		if(Gdx.input.isKeyPressed(Keys.A)){
-			boidSwarm.addBoid(Gdx.input.getX(),boid_enviorment.canvasHeight-Gdx.input.getY(), 180, Color.GREEN);
+			boidSwarm.addBoid(Gdx.input.getX(),CANVAS_HEIGHT - Gdx.input.getY(), 180, Color.GREEN);
         }
 
 		boidSwarm.update();
