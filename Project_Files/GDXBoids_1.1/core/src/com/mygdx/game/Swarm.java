@@ -12,7 +12,6 @@ public class Swarm {
     private SpriteBatch   textBatch;
 
     private static final BitmapFont font      = new BitmapFont();
-    private static final int MAX_BOID_SIZE    = 20;
     private static final int MAX_BOID_GOVENOR = 1000;
 
     public int boidSize = 12;
