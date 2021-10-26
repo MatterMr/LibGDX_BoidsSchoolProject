@@ -82,22 +82,22 @@ public class Boid{
     public void constrainBoid(){
         
         if(center.x < 0 ){
-            offsetPosition(boid_enviorment.canvasWidth, 0);
+            offsetPosition(boid_enviorment.CANVAS_WIDTH, 0);
         }
-        if(center.x > boid_enviorment.canvasWidth){
-            offsetPosition(-boid_enviorment.canvasWidth, 0);
+        if(center.x > boid_enviorment.CANVAS_WIDTH){
+            offsetPosition(-boid_enviorment.CANVAS_WIDTH, 0);
         }
         if(center.y < 0 ){
-            offsetPosition(0, boid_enviorment.canvasHeight);
+            offsetPosition(0, boid_enviorment.CANVAS_HEIGHT);
         }
-        if(center.y > boid_enviorment.canvasHeight){
-            offsetPosition(0, -boid_enviorment.canvasHeight);
+        if(center.y > boid_enviorment.CANVAS_HEIGHT){
+            offsetPosition(0, -boid_enviorment.CANVAS_HEIGHT);
         }
     }
     public double constrain(int reppelDistance, int turnSpeed){
         double reversedHeading = 0;
-        int width = boid_enviorment.canvasWidth;
-        int height = boid_enviorment.canvasHeight;
+        int width = boid_enviorment.CANVAS_WIDTH;
+        int height = boid_enviorment.CANVAS_HEIGHT;
         
         if(center.x > width-reppelDistance){
 
