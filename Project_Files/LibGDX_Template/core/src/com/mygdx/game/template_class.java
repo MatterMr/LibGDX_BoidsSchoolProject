@@ -39,6 +39,7 @@ public class template_class extends ApplicationAdapter {
 			pulseOut = !pulseOut;
 		}
 
+		
 
 		ScreenUtils.clear(0, 0, 0, 1);
 		renderer.begin();
