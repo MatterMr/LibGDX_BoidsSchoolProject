@@ -12,15 +12,14 @@ public class boid_enviorment extends ApplicationAdapter {
 	
 	public static final int CANVAS_WIDTH   = 800;
 	public static final int CANVAS_HEIGHT  = 600;
-	//private static final Color CLEAR_COLOR = new Color(75f/255f, 165f/255f, 157f/255f, 0.5f);
-	private static final Color CLEAR_COLOR = new Color(0f, 102f/255f, 102f/255f, 1f);
+	public static final boolean debug_settings = true;
+	private static final Color CLEAR_COLOR = new Color(75f/255f, 165f/255f, 157f/255f, 0.5f);
 
 	Swarm boidSwarm;
 
 	@Override
 	public void create () {
 		boidSwarm = new Swarm(true);
-		//boidSwarm.addBoid(100, 100, 0, Color.RED);
 	}
 
 	@Override

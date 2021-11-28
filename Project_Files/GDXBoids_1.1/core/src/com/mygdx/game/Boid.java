@@ -10,15 +10,15 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 public class Boid{
     
     //Object Vars
-    public Point center;
-    public Point[] points;
-    public int heading = 0;
+    private Point center;
+    private Point[] points;
+    private int heading = 0;
     private Swarm boidSwarm;
     private int size = 12;
-    public Color color = Color.RED;
+    private Color color = Color.RED;
 
     public Boid(int x, int y, int heading, Color color, Swarm swarm){
-        this.size = swarm.boidSize;
+        this.size = Swarm.boidSize;
         this.points = new Point[]{new Point(x+size/2.0, y), new Point(x-size/2.0,y+size/3.0), new Point(x-size/2.0,y-size/3.0)};
         this.heading = heading;
         this.color = color;
@@ -54,7 +54,7 @@ public class Boid{
             applyVector(thrustVector);
     }
     public void draw(ShapeRenderer boidRenderer){
-        Point thrustVector = getThrustVector(boidSwarm.speed*3);
+        //Point thrustVector = getThrustVector(boidSwarm.speed*3);
         boidRenderer.setColor(color);
         boidRenderer.triangle((float)points[0].x, (float)points[0].y, (float)points[1].x,
             (float)points[1].y, (float)points[2].x, (float)points[2].y);
@@ -151,7 +151,7 @@ public class Boid{
         get the vector of thust based on current heading and speed value
     */
     private Point getThrustVector(double speed){
-        Double thrustMultiplyer = (double)Gdx.graphics.getDeltaTime()*(speed+(size*10));
+        Double thrustMultiplyer = Gdx.graphics.getDeltaTime()*(speed+(size*10));
         Point thrustVector = Point.getPointFromAngle(heading);
         thrustVector.mult(new Point(thrustMultiplyer));
         return thrustVector;

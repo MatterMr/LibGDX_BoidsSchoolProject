@@ -11,11 +11,11 @@ public class Swarm {
     private ShapeRenderer boidRenderer;
     private SpriteBatch   textBatch;
 
-    private static final BitmapFont font      = new BitmapFont();
+    //private static final BitmapFont font      = new BitmapFont();
     private static final int MAX_BOID_GOVENOR = 1000;
 
-    public int boidSize = 12;
-    public double speed = 150+100;
+    public static final int boidSize = 12;
+    public double speed = 250;
     public ArrayList<Boid> boidCollection = new ArrayList<Boid>();
     
     
