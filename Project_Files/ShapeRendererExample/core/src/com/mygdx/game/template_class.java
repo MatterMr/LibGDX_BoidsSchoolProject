@@ -10,14 +10,15 @@ public class template_class extends ApplicationAdapter {
 	public static final int canvasWidth = 400;
 	public static final int canvasHeight = 400;
 
-	ShapeRenderer shapeRenderer = new ShapeRenderer();//Defined up here for example purposes
+	ShapeRenderer shapeRenderer; // Don't create the ShapeRenderer object here!!!
 
-	//@Override
+	@Override
 	public void create () {
 		//You should create the Shaprenderer here during runtime instead of compiletime. 
+		shapeRenderer = new ShapeRenderer();
 	}
 
-	//@Override
+	@Override
 	public void render () {
 		ScreenUtils.clear(0, 0, 0, 1);// Clears the screen each cycle
 
@@ -28,8 +29,8 @@ public class template_class extends ApplicationAdapter {
 		shapeRenderer.end();// Ends the batch and draws all shapes to the screen
 	}
 	
-	//@Override
+	@Override
 	public void dispose () {
-		//shapeRenderer.dispose();
+		shapeRenderer.dispose();
 	}
 }

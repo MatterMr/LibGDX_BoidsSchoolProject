@@ -7,7 +7,7 @@ import com.mygdx.game.template_class;
 public class DesktopLauncher {
 	public static void main (String[] arg) {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
-		config.title = "template-project";
+		config.title = "ShapeRendererExample";
 		config.width = template_class.canvasWidth;
 		config.height = template_class.canvasHeight;
 		config.foregroundFPS = 60;
