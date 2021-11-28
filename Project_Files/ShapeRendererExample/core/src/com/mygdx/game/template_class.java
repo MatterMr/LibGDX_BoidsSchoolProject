@@ -1,8 +1,8 @@
 package com.mygdx.game;
 
 import com.badlogic.gdx.ApplicationAdapter;
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.utils.ScreenUtils;
 
 public class template_class extends ApplicationAdapter {
@@ -10,49 +10,26 @@ public class template_class extends ApplicationAdapter {
 	public static final int canvasWidth = 400;
 	public static final int canvasHeight = 400;
 
-	private ShapeRenderer renderer;
+	ShapeRenderer shapeRenderer = new ShapeRenderer();//Defined up here for example purposes
 
-	//Shape Pulse Variables
-
-	private float radius = 0;
-	private final int maxRadius = 200;
-	private final int minRadius = 0;
-	private final int speed = 100;
-	private boolean pulseOut = true;
-
-	
+	//@Override
 	public void create () {
-		renderer = new ShapeRenderer();
-		renderer.setAutoShapeType(true);
+		//You should create the Shaprenderer here during runtime instead of compiletime. 
 	}
 
-	
+	//@Override
 	public void render () {
+		ScreenUtils.clear(0, 0, 0, 1);// Clears the screen each cycle
 
-		float speed = this.speed * Gdx.graphics.getDeltaTime();
-		if(radius < maxRadius& pulseOut){
-			radius += speed;
-		}else if(radius > minRadius){
-			radius -= speed;
-		}
-		if(radius <= minRadius || radius >= maxRadius){
-			pulseOut = !pulseOut;
-		}
+		shapeRenderer.begin(ShapeType.Line);// Begins the shape batch
 
-		
+		shapeRenderer.triangle(200, 400, 0, 0, 400, 0);// Adds triangle shape to batch
 
-		ScreenUtils.clear(0, 0, 0, 1);
-		renderer.begin();
-
-		renderer.circle(canvasWidth / 2, canvasHeight / 2, radius);
-		renderer.rect(canvasWidth / 2 - radius,  canvasHeight/2 - radius, radius*2, radius*2);
-		renderer.triangle(canvasWidth / 2 - radius, canvasHeight/2 -radius, canvasWidth / 2 + radius, canvasHeight/2 -radius, canvasWidth/2,  canvasHeight/2 +radius);
-
-		renderer.end();
+		shapeRenderer.end();// Ends the batch and draws all shapes to the screen
 	}
 	
-
+	//@Override
 	public void dispose () {
-		renderer.dispose();
+		//shapeRenderer.dispose();
 	}
 }
