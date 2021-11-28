@@ -36,12 +36,10 @@ public class Boid{
 
             //Check for boids, if not do not apply rules
             Point thrustVector = getThrustVector(speed);
-            if(boidsInRange.size() != 0){
+            if(!boidsInRange.isEmpty()){
                 finalRotation += MathExtension.applyTurnSpeedToRotation(seperation(seperationMaxRange, seperationMinRange), seperation);
                 finalRotation += MathExtension.applyTurnSpeedToRotation(MathExtension.findAngleToPoint(center, cohesion(boidsInRange), heading), cohesion);
-                finalRotation += MathExtension.applyTurnSpeedToRotation(alignment(boidsInRange), alignment);
-                
-                
+                finalRotation += MathExtension.applyTurnSpeedToRotation(alignment(boidsInRange), alignment);   
             }
             
             if(applyWallConstraints){
@@ -60,8 +58,8 @@ public class Boid{
         boidRenderer.setColor(color);
         boidRenderer.triangle((float)points[0].x, (float)points[0].y, (float)points[1].x,
             (float)points[1].y, (float)points[2].x, (float)points[2].y);
-         boidRenderer.setColor(Color.BLACK);
-         boidRenderer.line((float)center.x, (float)center.y, (float)center.x+(float)thrustVector.x, (float)center.y+(float)thrustVector.y);
+        //  boidRenderer.setColor(Color.BLACK);
+        //  boidRenderer.line((float)center.x, (float)center.y, (float)center.x+(float)thrustVector.x, (float)center.y+(float)thrustVector.y);
     }
 
 
@@ -115,10 +113,9 @@ public class Boid{
 
     private double repellFromPoint(Point p, int turnSpeed){
         double angleToPoint = MathExtension.findAngleToPoint(this.center, p, this.heading);
-        double deltaDegree = (turnSpeed == 0) 
+        return (turnSpeed == 0) 
         ? MathExtension.inverseAngle(angleToPoint) 
         : MathExtension.applyTurnSpeedToRotation(MathExtension.inverseAngle(angleToPoint), turnSpeed);
-        return deltaDegree;
     }
 
     private void applyRotation(int degrees ){

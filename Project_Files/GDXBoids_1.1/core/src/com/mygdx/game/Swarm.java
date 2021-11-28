@@ -61,19 +61,19 @@ public class Swarm {
 
     }
     public void draw(){
-
-        textBatch.begin();
-        font.setColor(Color.BLACK);
-        font.draw(textBatch, "" +boidCollection.get(0).heading, 10,boid_enviorment.CANVAS_HEIGHT-10 );
-        textBatch.end();
-        //Boid Drawing Loop
-        boidRenderer.begin(ShapeType.Filled);
         if(boidCollection.size() != 0){
+            // textBatch.begin();
+            // font.setColor(Color.BLACK);
+            // font.draw(textBatch, "" +boidCollection.get(0).heading, 10,boid_enviorment.CANVAS_HEIGHT-10 );
+            // textBatch.end();
+            //Boid Drawing Loop
+            boidRenderer.begin(ShapeType.Filled);
+            
             for(Boid b : boidCollection){
                 b.draw(boidRenderer);
             }
+            boidRenderer.end();
         }
-        boidRenderer.end();
     }
     public void addBoid(int x, int y, int heading, Color color){
         new Boid(x, y, heading, color, this); 
