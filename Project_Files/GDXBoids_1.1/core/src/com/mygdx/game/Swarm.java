@@ -1,6 +1,8 @@
 package com.mygdx.game;
 
 import java.util.ArrayList;
+
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -11,7 +13,7 @@ public class Swarm {
     private ShapeRenderer boidRenderer;
     private SpriteBatch   textBatch;
 
-    //private static final BitmapFont font      = new BitmapFont();
+    private static final BitmapFont font      = new BitmapFont();
     private static final int MAX_BOID_GOVENOR = 1000;
 
     public static final int boidSize = 12;
@@ -63,10 +65,10 @@ public class Swarm {
     }
     public void draw(){
         if(boidCollection.size() != 0){
-            // textBatch.begin();
-            // font.setColor(Color.BLACK);
-            // font.draw(textBatch, "" +boidCollection.get(0).heading, 10,boid_enviorment.CANVAS_HEIGHT-10 );
-            // textBatch.end();
+            textBatch.begin();
+            font.setColor(Color.BLACK);
+            font.draw(textBatch, "" + MathExtension.findAngleToPoint(new Point(boid_enviorment.CANVAS_WIDTH/2, boid_enviorment.CANVAS_HEIGHT/2), new Point(Gdx.input.getX(), boid_enviorment.CANVAS_HEIGHT - Gdx.input.getY()), 0)/*boidCollection.get(0).heading*/, 10,boid_enviorment.CANVAS_HEIGHT-10 );
+            textBatch.end();
             //Boid Drawing Loop
             boidRenderer.begin(ShapeType.Filled);
             

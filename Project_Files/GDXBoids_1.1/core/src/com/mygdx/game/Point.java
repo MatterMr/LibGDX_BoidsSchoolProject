@@ -40,7 +40,7 @@ public class Point {
     }
 
     public static Point rotatePoint(Point p, Point o, double degrees){
-        double angle = Math.toRadians(degrees);
+        double angle = Math.toRadians(degrees - 360);
         double x = Math.cos(angle) * (p.x - o.x) - Math.sin(angle) * (p.y - o.y) + o.x;
         double y = Math.sin(angle) * (p.x - o.x) + Math.cos(angle) * (p.y - o.y) + o.y;
 

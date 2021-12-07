@@ -23,7 +23,7 @@ public class Boid {
     private static boolean applyWallConstraints = true;
     
 
-    private static int sightRange = 50;
+    private static int sightRange = 500;
     private static double cohesion = 1;
     private static double alignment = 3;
     private static double seperation = 6;

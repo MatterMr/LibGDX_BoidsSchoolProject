@@ -12,7 +12,7 @@ public class Boid{
     //Object Vars
     private Point center;
     private Point[] points;
-    private int heading = 0;
+    public int heading = 0;
     private Swarm boidSwarm;
     private int size = 12;
     private Color color = Color.RED;
@@ -40,6 +40,7 @@ public class Boid{
                 finalRotation += MathExtension.applyTurnSpeedToRotation(seperation(seperationMaxRange, seperationMinRange), seperation);
                 finalRotation += MathExtension.applyTurnSpeedToRotation(MathExtension.findAngleToPoint(center, cohesion(boidsInRange), heading), cohesion);
                 finalRotation += MathExtension.applyTurnSpeedToRotation(alignment(boidsInRange), alignment);   
+                //finalRotation += MathExtension.applyTurnSpeedToRotation(alignment(MathExtension.findAngleToPoint(center, new Point(Gdx.input.getX(), boid_enviorment.CANVAS_HEIGHT - Gdx.input.getY()), 0)), 6);
             }
             
             if(applyWallConstraints){
@@ -54,12 +55,12 @@ public class Boid{
             applyVector(thrustVector);
     }
     public void draw(ShapeRenderer boidRenderer){
-        //Point thrustVector = getThrustVector(boidSwarm.speed*3);
+        Point thrustVector = getThrustVector(boidSwarm.speed*30);
         boidRenderer.setColor(color);
         boidRenderer.triangle((float)points[0].x, (float)points[0].y, (float)points[1].x,
             (float)points[1].y, (float)points[2].x, (float)points[2].y);
-        //  boidRenderer.setColor(Color.BLACK);
-        //  boidRenderer.line((float)center.x, (float)center.y, (float)center.x+(float)thrustVector.x, (float)center.y+(float)thrustVector.y);
+         boidRenderer.setColor(Color.BLACK);
+         boidRenderer.line((float)center.x, (float)center.y, (float)center.x+(float)thrustVector.x, (float)center.y+(float)thrustVector.y);
     }
 
 
@@ -201,23 +202,17 @@ public class Boid{
         {
             averageHeading += b.heading;
         }
-        return (averageHeading / (boidsInRange.size())-heading);
+        averageHeading /= boidsInRange.size();
+        return averageHeading - heading;
+
     }
+    // private double alignment(double angle){
+    //     return angle - heading;
+    // }
 
     private double seperation(double seperationMaxRange, double seperationMinRange ){
         ArrayList<Boid>  boidsInRange = findBoidsInRange(seperationMaxRange, seperationMinRange);
-
-        double sumOfDegrees = 0;
-        double averageHeadingInverse;
-
-        for(Boid b : boidsInRange){
-            sumOfDegrees += MathExtension.findAngleToPoint(this.center, b.center, heading);
-        }
-        double averageHeading = (sumOfDegrees/(boidsInRange.size()));
-        
-        averageHeadingInverse = MathExtension.inverseAngle(averageHeading);
-
-        return averageHeadingInverse;
+        return MathExtension.findAngleToPoint(center, Point.rotatePoint(cohesion(boidsInRange), center, 180), heading);
     }
     
 }

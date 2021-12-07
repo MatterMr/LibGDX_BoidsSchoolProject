@@ -37,14 +37,15 @@ public class Boid{
             //Check for boids, if not do not apply rules
             Point thrustVector = getThrustVector(speed);
             if(!boidsInRange.isEmpty()){
-                finalRotation += MathExtension.applyTurnSpeedToRotation(seperation(seperationMaxRange, seperationMinRange), seperation);
-                finalRotation += MathExtension.applyTurnSpeedToRotation(MathExtension.findAngleToPoint(center, cohesion(boidsInRange), heading), cohesion);
-                finalRotation += MathExtension.applyTurnSpeedToRotation(alignment(boidsInRange), alignment);   
+                //finalRotation += MathExtension.applyTurnSpeedToRotation(seperation(seperationMaxRange, seperationMinRange), seperation);
+                //finalRotation += MathExtension.applyTurnSpeedToRotation(MathExtension.findAngleToPoint(center, cohesion(boidsInRange), heading), cohesion);
+                finalRotation += MathExtension.applyTurnSpeedToRotation(alignment(boidsInRange), alignment); 
+                //finalRotation += MathExtension.applyTurnSpeedToRotation(MathExtension.findAngleToPoint(center, new Point(Gdx.input.getX(), boid_enviorment.CANVAS_HEIGHT - Gdx.input.getY()), heading), 4);
             }
             
             if(applyWallConstraints){
                 finalRotation += constrain(20, 0);
-                finalRotation += constrain(70, 10);
+                finalRotation += constrain(100, 10);
                 constrainBoid();
             }else{
                 constrainBoid();
@@ -112,15 +113,15 @@ public class Boid{
     }
 
     private double repellFromPoint(Point p, int turnSpeed){
-        double angleToPoint = MathExtension.findAngleToPoint(this.center, p, this.heading);
+        double angleToPoint = MathExtension.inverseAngle(MathExtension.findAngleToPoint(this.center, p, heading));
         return (turnSpeed == 0) 
-        ? MathExtension.inverseAngle(angleToPoint) 
-        : MathExtension.applyTurnSpeedToRotation(MathExtension.inverseAngle(angleToPoint), turnSpeed);
+        ? angleToPoint
+        : MathExtension.applyTurnSpeedToRotation(angleToPoint, turnSpeed);
     }
 
     private void applyRotation(int degrees ){
         //Add degree change to heading
-        heading += degrees;
+        heading +=  degrees;
 
         if(heading > 180){heading = -180 + (heading - 180);}
         if(heading < -180){heading = 180 - (heading + 180);}
@@ -201,23 +202,12 @@ public class Boid{
         {
             averageHeading += b.heading;
         }
-        return (averageHeading / (boidsInRange.size())-heading);
+        return (averageHeading / boidsInRange.size())-heading;
     }
 
     private double seperation(double seperationMaxRange, double seperationMinRange ){
         ArrayList<Boid>  boidsInRange = findBoidsInRange(seperationMaxRange, seperationMinRange);
-
-        double sumOfDegrees = 0;
-        double averageHeadingInverse;
-
-        for(Boid b : boidsInRange){
-            sumOfDegrees += MathExtension.findAngleToPoint(this.center, b.center, heading);
-        }
-        double averageHeading = (sumOfDegrees/(boidsInRange.size()));
-        
-        averageHeadingInverse = MathExtension.inverseAngle(averageHeading);
-
-        return averageHeadingInverse;
+        return MathExtension.findAngleToPoint(center, Point.rotatePoint(cohesion(boidsInRange), center, 180), heading);
     }
     
 }

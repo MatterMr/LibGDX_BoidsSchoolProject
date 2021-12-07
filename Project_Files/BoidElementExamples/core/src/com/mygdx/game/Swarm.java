@@ -19,7 +19,7 @@ public class Swarm {
     public ArrayList<Boid> boidCollection = new ArrayList<Boid>();
     
     
-    private double seperationMaxRange = boidSize * 1.3;
+    private double seperationMaxRange = boidSize * 1.5;
     private double seperationMinRange = 0;
 
     private boolean applyWallConstraints = false;

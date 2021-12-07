@@ -18,7 +18,8 @@ public class boid_enviorment extends ApplicationAdapter {
 
 	@Override
 	public void create () {
-		boidSwarm = new Swarm(250, 0, 0, 8, 400, true);
+		boidSwarm = new Swarm(0, 0, 6, 0 , 500 ,true);
+		boidSwarm.addBoid(CANVAS_WIDTH/2, CANVAS_HEIGHT/2, 90, Color.RED);
 	}
 
 	@Override
@@ -26,16 +27,16 @@ public class boid_enviorment extends ApplicationAdapter {
 		ScreenUtils.clear(CLEAR_COLOR);
 		
 
-		if(Gdx.input.isKeyPressed(Keys.W)){
+		if(Gdx.input.isKeyJustPressed(Keys.W)){
 			boidSwarm.addBoid(Gdx.input.getX(),CANVAS_HEIGHT - Gdx.input.getY(), 90, Color.WHITE);
         }
-		if(Gdx.input.isKeyPressed(Keys.S)){
+		if(Gdx.input.isKeyJustPressed(Keys.S)){
 			boidSwarm.addBoid(Gdx.input.getX(),CANVAS_HEIGHT - Gdx.input.getY(), -90, Color.BLUE);
         }
-		if(Gdx.input.isKeyPressed(Keys.D)){
+		if(Gdx.input.isKeyJustPressed(Keys.D)){
 			boidSwarm.addBoid(Gdx.input.getX(),CANVAS_HEIGHT - Gdx.input.getY(), 0, Color.YELLOW);
         }
-		if(Gdx.input.isKeyPressed(Keys.A)){
+		if(Gdx.input.isKeyJustPressed(Keys.A)){
 			boidSwarm.addBoid(Gdx.input.getX(),CANVAS_HEIGHT - Gdx.input.getY(), 180, Color.GREEN);
         }
 
