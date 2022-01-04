@@ -44,7 +44,7 @@ public class Point {
         double x = Math.cos(angle) * (p.x - o.x) - Math.sin(angle) * (p.y - o.y) + o.x;
         double y = Math.sin(angle) * (p.x - o.x) + Math.cos(angle) * (p.y - o.y) + o.y;
 
-        return new Point( (double) x, (double) y);
+        return new Point(x, y);
     }
     public static Point getPointFromAngle(double degree){
         double x =  (Math.cos(Math.toRadians((int)degree)));

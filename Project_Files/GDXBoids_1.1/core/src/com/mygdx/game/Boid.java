@@ -58,10 +58,10 @@ public class Boid{
         boidRenderer.setColor(color);
         boidRenderer.triangle((float)points[0].x, (float)points[0].y, (float)points[1].x,
             (float)points[1].y, (float)points[2].x, (float)points[2].y);
-        
-        Point thrustVector = getThrustVector(boidSwarm.speed*4);
-        boidRenderer.setColor(Color.BLACK);
-        boidRenderer.line((float)center.x, (float)center.y, (float)center.x+(float)thrustVector.x, (float)center.y+(float)thrustVector.y);
+        //Draw thrust Vectors
+        // Point thrustVector = getThrustVector(boidSwarm.speed*4);
+        // boidRenderer.setColor(Color.BLACK);
+        // boidRenderer.line((float)center.x, (float)center.y, (float)center.x+(float)thrustVector.x, (float)center.y+(float)thrustVector.y);
     }
 
 
@@ -208,7 +208,6 @@ public class Boid{
         }
         double avgR = Math.atan2(y / boidsInRange.size(), x / boidsInRange.size());
         return Math.toDegrees(avgR) - heading;
-
     }
 
     private double seperation(double seperationMaxRange, double seperationMinRange ){
