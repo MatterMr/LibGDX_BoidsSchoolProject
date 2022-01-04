@@ -19,6 +19,7 @@ public class boid_enviorment extends ApplicationAdapter {
 	@Override
 	public void create () {
 		boidSwarm = new Swarm(0, 0, 5, 0, 50, true);
+		boidSwarm.addBoid(400, 300, 0, Color.RED);
 	}
 
 	@Override

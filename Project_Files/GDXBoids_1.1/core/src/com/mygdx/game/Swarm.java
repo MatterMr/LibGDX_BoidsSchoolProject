@@ -65,11 +65,11 @@ public class Swarm {
     }
     public void draw(){
         if(boidCollection.size() != 0){
-            textBatch.begin();
-            font.setColor(Color.BLACK);
-            font.draw(textBatch, "" + MathExtension.findAngleToPoint(new Point(boid_enviorment.CANVAS_WIDTH/2, boid_enviorment.CANVAS_HEIGHT/2), new Point(Gdx.input.getX(), boid_enviorment.CANVAS_HEIGHT - Gdx.input.getY()), 0)/*boidCollection.get(0).heading*/, 10,boid_enviorment.CANVAS_HEIGHT-10 );
-            textBatch.end();
-            //Boid Drawing Loop
+            // textBatch.begin();
+            // font.setColor(Color.BLACK);
+            // font.draw(textBatch, "" + MathExtension.findAngleToPoint(new Point(boid_enviorment.CANVAS_WIDTH/2, boid_enviorment.CANVAS_HEIGHT/2), new Point(Gdx.input.getX(), boid_enviorment.CANVAS_HEIGHT - Gdx.input.getY()), 0)/*boidCollection.get(0).heading*/, 10,boid_enviorment.CANVAS_HEIGHT-10 );
+            // textBatch.end();
+            // //Boid Drawing Loop
             boidRenderer.begin(ShapeType.Filled);
             
             for(Boid b : boidCollection){

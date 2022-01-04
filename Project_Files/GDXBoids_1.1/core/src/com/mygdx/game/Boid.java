@@ -39,8 +39,7 @@ public class Boid{
             if(!boidsInRange.isEmpty()){
                 finalRotation += MathExtension.applyTurnSpeedToRotation(seperation(seperationMaxRange, seperationMinRange), seperation);
                 finalRotation += MathExtension.applyTurnSpeedToRotation(MathExtension.findAngleToPoint(center, cohesion(boidsInRange), heading), cohesion);
-                finalRotation += MathExtension.applyTurnSpeedToRotation(alignment(boidsInRange), alignment);   
-                //finalRotation += MathExtension.applyTurnSpeedToRotation(alignment(MathExtension.findAngleToPoint(center, new Point(Gdx.input.getX(), boid_enviorment.CANVAS_HEIGHT - Gdx.input.getY()), 0)), 6);
+                finalRotation +=  MathExtension.applyTurnSpeedToRotation(alignment(boidsInRange), alignment);
             }
             
             if(applyWallConstraints){
@@ -55,12 +54,14 @@ public class Boid{
             applyVector(thrustVector);
     }
     public void draw(ShapeRenderer boidRenderer){
-        Point thrustVector = getThrustVector(boidSwarm.speed*30);
+        
         boidRenderer.setColor(color);
         boidRenderer.triangle((float)points[0].x, (float)points[0].y, (float)points[1].x,
             (float)points[1].y, (float)points[2].x, (float)points[2].y);
-         boidRenderer.setColor(Color.BLACK);
-         boidRenderer.line((float)center.x, (float)center.y, (float)center.x+(float)thrustVector.x, (float)center.y+(float)thrustVector.y);
+        
+        Point thrustVector = getThrustVector(boidSwarm.speed*4);
+        boidRenderer.setColor(Color.BLACK);
+        boidRenderer.line((float)center.x, (float)center.y, (float)center.x+(float)thrustVector.x, (float)center.y+(float)thrustVector.y);
     }
 
 
@@ -197,18 +198,18 @@ public class Boid{
         
     }
     private double alignment(ArrayList<Boid> boidsInRange){
-        double averageHeading = 0;
-        for(Boid b : boidsInRange)
-        {
-            averageHeading += b.heading;
+        double x = 0.0;
+        double y = 0.0;
+ 
+        for (Boid b : boidsInRange) {
+            double angleR = Math.toRadians(b.heading);
+            x += Math.cos(angleR);
+            y += Math.sin(angleR);
         }
-        averageHeading /= boidsInRange.size();
-        return averageHeading - heading;
+        double avgR = Math.atan2(y / boidsInRange.size(), x / boidsInRange.size());
+        return Math.toDegrees(avgR) - heading;
 
     }
-    // private double alignment(double angle){
-    //     return angle - heading;
-    // }
 
     private double seperation(double seperationMaxRange, double seperationMinRange ){
         ArrayList<Boid>  boidsInRange = findBoidsInRange(seperationMaxRange, seperationMinRange);
