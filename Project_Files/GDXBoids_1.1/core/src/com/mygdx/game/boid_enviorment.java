@@ -10,16 +10,16 @@ import com.badlogic.gdx.utils.ScreenUtils;
 
 public class boid_enviorment extends ApplicationAdapter {
 	
-	public static final int CANVAS_WIDTH   = 1920/2;
-	public static final int CANVAS_HEIGHT  = 660/2;
+	public static final int CANVAS_WIDTH   = 1920;
+	public static final int CANVAS_HEIGHT  = 650;
 	private static final Color CLEAR_COLOR = new Color(75f/255f, 165f/255f, 157f/255f, 0.5f);
 
 	Swarm boidSwarm;
 
 	@Override
 	public void create () {
-		boidSwarm = new Swarm(150, 3, 0, 0 , 225 ,true);
-		//boidSwarm = new Swarm(true);
+		//boidSwarm = new Swarm(150, 3, 0, 0 , 225 ,true);
+		boidSwarm = new Swarm(true);
 	}
 
 	@Override
